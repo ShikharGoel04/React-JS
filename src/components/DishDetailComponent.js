@@ -7,20 +7,29 @@ class DishDetail extends Component{
         
     }
     renderDish(dish) {
-        if (dish != null)
-            return(
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+        if (dish != null) {
+            return (
+                <div className='row'>
+                    <div className="col-12 col-md-5 mt-1">
+                        <Card>
+                            <CardImg width="100%" src={dish.image} alt={dish.name} />
+                            <CardBody>
+                                <CardTitle heading>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-12 col-md-5 mt-1">
+                        <h4>Comments</h4>
+                        {this.renderComments(dish.comments)}
+                    </div>
+                </div>
             );
-        else
-            return(
+        } else {
+            return (
                 <div></div>
             );
+        }
     }
     renderComments(comments){
             if(comments!=null)
@@ -46,20 +55,9 @@ else{
 }
     }
         render(){
-                    const selected=this.props.selectedDish;
-                    const comments=this.props.comments;
+                    const selected=this.props.dish;
                     return(
-                            <div className="container">
-                            <div className="row">
-                            <div className="col-12 col-md-5 m-1">
-                                    {this.renderDish(selected)}
-                                    </div>
-                                    <div className="col-12 col-md-5">
-                                        <h4>Comments</h4>
-                                       {this.renderComments(comments)}
-                                        </div>
-                            </div>
-                            </div>
+                      this.renderDish(selected)
                         );
                 }
             }
